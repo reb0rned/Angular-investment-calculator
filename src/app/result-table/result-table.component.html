@@ -1,3 +1,6 @@
+@if (annualData().length === 0) {
+<p>Calculate your investments to see the result here!</p>
+} @else {
 <table>
   <thead>
     <tr>
@@ -13,7 +16,7 @@
     @for (annual of annualData(); track annual.year) {
     <tr>
       <th>{{ annual.year }}</th>
-      <th>{{ annual.annualInvestment | currency : "USD" : "symbol" }}</th>
+      <th>{{ annual.valueEndOfYear | currency : "USD" : "symbol" }}</th>
       <th>{{ annual.interest | currency : "USD" : "symbol" }}</th>
       <th>{{ annual.totalInterest | currency : "USD" : "symbol" }}</th>
       <th>{{ annual.totalAmountInvested | currency : "USD" : "symbol" }}</th>
@@ -21,3 +24,5 @@
     }
   </tbody>
 </table>
+
+}
