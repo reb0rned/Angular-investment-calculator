@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Investment Value</th>
+      <th>Interest (Year)</th>
+      <th>Total Interest</th>
+      <th>Invested Capital</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (annual of annualData(); track annual.year) {
+    <tr>
+      <th>{{ annual.year }}</th>
+      <th>{{ annual.annualInvestment | currency : "USD" : "symbol" }}</th>
+      <th>{{ annual.interest | currency : "USD" : "symbol" }}</th>
+      <th>{{ annual.totalInterest | currency : "USD" : "symbol" }}</th>
+      <th>{{ annual.totalAmountInvested | currency : "USD" : "symbol" }}</th>
+    </tr>
+    }
+  </tbody>
+</table>
