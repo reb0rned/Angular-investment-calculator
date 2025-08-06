@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CalculatorService } from './calculator.service';
 
@@ -10,16 +10,24 @@ import { CalculatorService } from './calculator.service';
   styleUrl: './calculator.component.css'
 })
 export class CalculatorComponent {
-  initialInv = ''
-  annualInv = ''
-  returnInv = ''
-  durationInv = ''
+  initialInv = signal('')
+  annualInv = signal('')
+  returnInv = signal('')
+  durationInv = signal('')
 
-  constructor(private calculatorService: CalculatorService) {
-
-  }
+  constructor(private calculatorService: CalculatorService) {}
 
   onSubmit() {
-    return this.calculatorService.annualInvestmentCounter(+this.initialInv, +this.annualInv, +this.returnInv, +this.durationInv)
+    this.calculatorService.annualInvestmentCounter(
+      +this.initialInv(),
+      +this.annualInv(),
+      +this.returnInv(),
+      +this.durationInv()
+      )
+
+      this.initialInv.set('')
+      this.annualInv.set('')
+      this.returnInv.set('')
+      this.durationInv.set('')
   }
 }
